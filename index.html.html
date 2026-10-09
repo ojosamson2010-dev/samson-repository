@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Samson is a student web developer building clean, responsive websites and landing pages for individuals and small businesses.">
+  <title>Samson | Web Developer & Digital Creator</title>
+  <style>
+    :root {
+      --bg: #061426;
+      --panel: #0b1d33;
+      --panel-light: #102743;
+      --text: #f4f8ff;
+      --muted: #b8c7da;
+      --blue: #13b8ff;
+      --blue-dark: #0879d8;
+      --line: rgba(160, 193, 226, .2);
+      --light-bg: #f4f8fd;
+      --light-text: #10243e;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    a { color: inherit; }
+    .container { width: min(1100px, 90%); margin: 0 auto; }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(5, 17, 31, .94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      min-height: 72px; display: flex; align-items: center;
+      justify-content: space-between; gap: 24px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .brand-mark {
+      display: grid; place-items: center; width: 42px; height: 42px;
+      border-radius: 12px; background: linear-gradient(135deg, var(--blue), #0868d9);
+      color: #fff; font-weight: 900; font-size: 25px;
+    }
+    .brand strong { display: block; font-size: 18px; line-height: 1.2; }
+    .brand small { display: block; color: var(--muted); font-size: 12px; }
+    nav { display: flex; flex-wrap: wrap; gap: 22px; }
+    nav a { color: var(--muted); text-decoration: none; font-size: 14px; }
+    nav a:hover, nav a:focus { color: var(--blue); }
+    .hero {
+      overflow: hidden; padding: 86px 0 92px;
+      background: radial-gradient(circle at 78% 40%, rgba(0, 133, 255, .19), transparent 34%),
+                  linear-gradient(120deg, #061426, #081b31);
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; }
+    .eyebrow {
+      display: inline-block; padding: 5px 13px; border: 1px solid rgba(19,184,255,.35);
+      border-radius: 999px; color: #83dfff; background: rgba(19,184,255,.08);
+      font-size: 13px; letter-spacing: .04em;
+    }
+    h1 { margin: 18px 0 8px; font-size: clamp(42px, 6vw, 68px); line-height: 1.05; letter-spacing: -.04em; }
+    .accent { color: var(--blue); }
+    .hero h2 { margin: 0 0 18px; font-size: clamp(20px, 2.5vw, 27px); }
+    .hero p { max-width: 590px; color: var(--muted); margin: 0 0 25px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button {
+      display: inline-flex; justify-content: center; align-items: center; gap: 8px;
+      min-height: 46px; padding: 11px 20px; border-radius: 999px;
+      text-decoration: none; font-weight: 700; font-size: 14px;
+      border: 1px solid transparent; transition: transform .2s, background .2s;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { color: #041326; background: var(--blue); }
+    .button-primary:hover { background: #69d5ff; }
+    .button-outline { border-color: #2d6088; color: var(--text); }
+    .hero-card {
+      min-height: 300px; display: grid; place-items: center; text-align: center;
+      padding: 32px; border: 1px solid var(--line); border-radius: 28px;
+      background: linear-gradient(145deg, rgba(19,184,255,.13), rgba(14,35,59,.9));
+      box-shadow: 0 25px 70px rgba(0,0,0,.18);
+    }
+    .avatar {
+      width: 116px; height: 116px; display: grid; place-items: center; margin: 0 auto 18px;
+      border-radius: 30px; background: linear-gradient(135deg, #13b8ff, #0752b4);
+      color: white; font-size: 58px; font-weight: 900; transform: rotate(-4deg);
+    }
+    .hero-card h3 { margin: 0 0 4px; font-size: 23px; }
+    .hero-card p { margin: 0; color: var(--muted); font-size: 14px; }
+    section { padding: 76px 0; scroll-margin-top: 80px; }
+    .section-heading { max-width: 680px; margin-bottom: 32px; }
+    .section-heading .kicker { color: var(--blue); text-transform: uppercase; letter-spacing: .13em; font-weight: 700; font-size: 12px; }
+    h2.section-title { margin: 4px 0 10px; font-size: clamp(29px, 4vw, 40px); line-height: 1.2; }
+    .section-heading p { margin: 0; color: var(--muted); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: start; }
+    .about-copy p { color: var(--muted); }
+    .fact-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .fact { border: 1px solid var(--line); border-radius: 12px; padding: 10px 13px; color: var(--muted); font-size: 13px; }
+    .skill-list { display: grid; gap: 18px; }
+    .skill-top { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 7px; font-size: 14px; }
+    .skill-top span:last-child { color: var(--muted); }
+    .skill-track { height: 8px; overflow: hidden; border-radius: 999px; background: #1b3551; }
+    .skill-fill { height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--blue-dark), var(--blue)); }
+    .light-section { color: var(--light-text); background: var(--light-bg); }
+    .light-section .section-heading p, .light-section .about-copy p { color: #52647a; }
+    .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .service-card {
+      padding: 24px; border: 1px solid #dbe6f1; border-radius: 18px; background: white;
+      box-shadow: 0 8px 25px rgba(15, 45, 78, .04);
+    }
+    .service-icon { font-size: 25px; color: var(--blue-dark); }
+    .service-card h3 { margin: 10px 0 7px; font-size: 18px; }
+    .service-card p { margin: 0; color: #52647a; font-size: 14px; }
+    .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .project-card { overflow: hidden; border: 1px solid #dbe6f1; border-radius: 17px; background: white; }
+    .project-preview {
+      min-height: 150px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;
+      color: white; background: linear-gradient(135deg, #07182d, #0759a7);
+    }
+    .project-preview.light { color: #10243e; background: linear-gradient(135deg, #d8f0ff, #f8fbff); }
+    .project-preview.purple { background: linear-gradient(135deg, #171638, #4852b8); }
+    .preview-bar { display: flex; gap: 5px; }
+    .preview-bar i { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); }
+    .preview-title { font-size: 21px; font-weight: 800; line-height: 1.2; max-width: 210px; }
+    .preview-lines { display: grid; gap: 5px; max-width: 190px; }
+    .preview-lines span { height: 5px; border-radius: 9px; background: rgba(255,255,255,.42); }
+    .preview-lines span:nth-child(2) { width: 75%; }
+    .project-info { padding: 19px; }
+    .project-info h3 { margin: 0 0 6px; font-size: 17px; }
+    .project-info p { color: #52647a; font-size: 14px; margin: 0 0 13px; }
+    .tag { display: inline-block; margin: 0 5px 5px 0; padding: 4px 8px; border-radius: 999px; background: #e9f5ff; color: #0759a7; font-size: 11px; font-weight: 700; }
+    .note { color: #52647a; font-size: 13px; margin-top: 18px; }
+    .contact-panel {
+      display: grid; grid-template-columns: 1.1fr .9fr; gap: 35px; align-items: center;
+      padding: 34px; border: 1px solid var(--line); border-radius: 22px;
+      background: linear-gradient(135deg, #0d2540, #071629);
+    }
+    .contact-panel p { color: var(--muted); }
+    .contact-details { display: grid; gap: 12px; }
+    .contact-details a { color: #91e3ff; text-decoration: none; overflow-wrap: anywhere; }
+    footer { border-top: 1px solid var(--line); padding: 23px 0; color: var(--muted); font-size: 13px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+    @media (max-width: 800px) {
+      .hero-grid, .about-grid, .contact-panel { grid-template-columns: 1fr; }
+      .hero { padding: 64px 0; }
+      .hero-card { min-height: 230px; }
+      .service-grid, .project-grid { grid-template-columns: repeat(2, 1fr); }
+      nav { gap: 12px; justify-content: flex-end; }
+    }
+    @media (max-width: 560px) {
+      .nav { align-items: flex-start; padding: 14px 0; flex-direction: column; }
+      nav { justify-content: flex-start; gap: 10px 16px; }
+      nav a { font-size: 13px; }
+      .service-grid, .project-grid { grid-template-columns: 1fr; }
+      section { padding: 58px 0; }
+      .contact-panel { padding: 24px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Samson home">
+        <span class="brand-mark">S</span>
+        <span><strong>Samson</strong><small>Web Developer</small></span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#home">Home</a><a href="#about">About</a><a href="#skills">Skills</a>
+        <a href="#services">Services</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Available for beginner-friendly projects</span>
+          <h1>Hello, I'm <span class="accent">Samson</span></h1>
+          <h2>Student Web Developer &amp; Digital Creator</h2>
+          <p>I create clean, modern and mobile-friendly web pages for individuals, creators and small businesses. I’m growing my skills through hands-on projects and would love to help bring your idea online.</p>
+          <div class="actions">
+            <a class="button button-primary" href="#contact">Let's Work Together <span aria-hidden="true">→</span></a>
+            <a class="button button-outline" href="#projects">Explore My Projects</a>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Introduction card">
+          <div>
+            <div class="avatar" aria-hidden="true">S</div>
+            <h3>Ideas into websites.</h3>
+            <p>Thoughtful design · Clear communication · Continuous learning</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-grid">
+        <div class="about-copy">
+          <div class="section-heading">
+            <span class="kicker">A little about me</span>
+            <h2 class="section-title">Building my skills, <span class="accent">one project at a time.</span></h2>
+          </div>
+          <p>I’m a student and aspiring web developer with an interest in technology, design and problem-solving. I enjoy learning how websites work and turning ideas into simple, useful online experiences.</p>
+          <p>My aim is to keep improving, understand each customer’s needs and deliver work I can be proud of. As I build experience, I’m happy to discuss small, clearly defined projects.</p>
+          <div class="fact-row">
+            <span class="fact">📍 Based in Nigeria</span>
+            <span class="fact">🎓 Student developer</span>
+            <span class="fact">🌐 Remote projects</span>
+          </div>
+        </div>
+        <div id="skills">
+          <div class="section-heading">
+            <span class="kicker">What I'm learning</span>
+            <h2 class="section-title">My <span class="accent">Skills</span></h2>
+            <p>I’m continuing to practise these skills and expand my experience.</p>
+          </div>
+          <div class="skill-list">
+            <div><div class="skill-top"><strong>HTML</strong><span>Learning &amp; practice</span></div><div class="skill-track"><div class="skill-fill" style="width:78%"></div></div></div>
+            <div><div class="skill-top"><strong>CSS</strong><span>Learning &amp; practice</span></div><div class="skill-track"><div class="skill-fill" style="width:62%"></div></div></div>
+            <div><div class="skill-top"><strong>JavaScript</strong><span>Currently developing</span></div><div class="skill-track"><div class="skill-fill" style="width:35%"></div></div></div>
+            <div><div class="skill-top"><strong>Responsive design</strong><span>Practising</span></div><div class="skill-track"><div class="skill-fill" style="width:55%"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="light-section" id="services">
+      <div class="container">
+        <div class="section-heading">
+          <span class="kicker">How I can help</span>
+          <h2 class="section-title">Services I <span class="accent">Can Offer</span></h2>
+          <p>Starting with small projects that match my current skills, with clear expectations and communication from the beginning.</p>
+        </div>
+        <div class="service-grid">
+          <article class="service-card"><div class="service-icon" aria-hidden="true">▣</div><h3>Personal Websites</h3><p>A simple website to introduce you, showcase your work and make it easy for people to contact you.</p></article>
+          <article class="service-card"><div class="service-icon" aria-hidden="true">⌘</div><h3>Landing Pages</h3><p>A focused page for a product, event or small business, with clear information and a call to action.</p></article>
+          <article class="service-card"><div class="service-icon" aria-hidden="true">↔</div><h3>Mobile-Friendly Layouts</h3><p>Improve page structure so visitors can read and navigate your website on phones and computers.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="light-section" id="projects" style="padding-top: 8px;">
+      <div class="container">
+        <div class="section-heading">
+          <span class="kicker">Selected practice work</span>
+          <h2 class="section-title">My <span class="accent">Projects</span></h2>
+          <p>These are portfolio concepts and practice projects. I’ll add live links as each project is completed and published.</p>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-preview"><div class="preview-bar"><i></i><i></i><i></i></div><div class="preview-title">Meet Samson</div><div class="preview-lines"><span></span><span></span></div></div>
+            <div class="project-info"><h3>Personal Portfolio</h3><p>A personal website concept for presenting skills, projects and contact information.</p><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Practice project</span></div>
+          </article>
+          <article class="project-card">
+            <div class="project-preview light"><div class="preview-bar"><i></i><i></i><i></i></div><div class="preview-title">Grow Your Business</div><div class="preview-lines"><span style="background:#8ab9df"></span><span style="background:#8ab9df"></span></div></div>
+            <div class="project-info"><h3>Small Business Landing Page</h3><p>A layout concept for a business to explain its offer and help visitors get in touch.</p><span class="tag">Layout design</span><span class="tag">Practice project</span></div>
+          </article>
+          <article class="project-card">
+            <div class="project-preview purple"><div class="preview-bar"><i></i><i></i><i></i></div><div class="preview-title">Plan. Track. Finish.</div><div class="preview-lines"><span></span><span></span></div></div>
+            <div class="project-info"><h3>Task Dashboard Concept</h3><p>A dashboard design exercise focused on clear sections and easy navigation.</p><span class="tag">UI concept</span><span class="tag">Practice project</span></div>
+          </article>
+        </div>
+        <p class="note">Tip: Replace these concept cards with screenshots, descriptions and working links when your real projects are ready.</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-panel">
+          <div>
+            <span class="kicker">Have an idea?</span>
+            <h2 class="section-title">Let's build something <span class="accent">useful.</span></h2>
+            <p>Tell me a little about your website, what you need it to do and your expected timeline. I’ll reply to discuss whether it’s a good fit for my current skills.</p>
+            <a class="button button-primary" href="mailto:ojosamson2010@gmail.com?subject=Website%20project%20enquiry">Email Me About Your Project <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="contact-details">
+            <div><strong>Email</strong><br><a href="mailto:ojosamson2010@gmail.com">ojosamson2010@gmail.com</a></div>
+            <div><strong>Location</strong><br><span>Nigeria · Remote projects</span></div>
+            <div><strong>Best first message</strong><br><span style="color:var(--muted)">Your goal, pages needed and target completion date.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span><strong>Samson</strong> · Student Web Developer</span>
+      <span>© 2026 Samson. Thanks for visiting my portfolio.</span>
+    </div>
+  </footer>
+</body>
+</html>
